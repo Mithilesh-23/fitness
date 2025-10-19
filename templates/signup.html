@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Signup</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent: #114a9e;
+        }
+
+        body,
+        html {
+            height: 100%;
+            background: #f6f8fb;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        .split {
+            min-height: 100vh;
+        }
+
+        .info-side {
+            background: linear-gradient(180deg, var(--accent) 0%, #0b5ed7 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .info-card {
+            max-width: 38rem;
+        }
+
+        .form-side {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .signup-card {
+            width: 100%;
+            max-width: 540px;
+        }
+
+        .brand {
+            font-weight: 700;
+            letter-spacing: .3px;
+        }
+
+        @media (max-width: 767.98px) {
+            .info-side {
+                padding: 2rem 1.5rem;
+                text-align: center;
+            }
+
+            .form-side {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row split g-0">
+            <!-- Left informational side -->
+            <div class="col-12 col-md-6 info-side">
+                <div class="info-card">
+                    <h1 class="display-6 mb-3">Welcome to FitLife</h1>
+                    <p class="lead mb-4">Join our community to track progress, find workouts, and stay motivated. Quick
+                        signup — get personalized tips and plans.</p>
+
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2">• Personalized workout routines</li>
+                        <li class="mb-2">• Nutrition and tracking</li>
+                        <li class="mb-2">• Community challenges</li>
+                    </ul>
+
+                    <p class="small opacity-75">Already have an account? <a href="#"
+                            class="text-white text-decoration-underline">Sign in</a></p>
+                </div>
+            </div>
+
+            <!-- Right form side -->
+            <div class="col-12 col-md-6 form-side">
+                <div class="signup-card">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="mb-3 d-flex align-items-center justify-content-between">
+                                <div>
+                                    <div class="brand">FitLife</div>
+                                    <div class="text-muted small">Create your account</div>
+                                </div>
+                            </div>
+
+
+                            <form action="/new_register/" id="signupForm" method="POST" novalidate>
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">User name</label>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        placeholder="Your name" required>
+                                    <div class="invalid-feedback">Please enter your name.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="name@example.com" required>
+                                    <div class="invalid-feedback">Please enter a valid email.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Choose a password" required minlength="6">
+                                    <div class="form-text">At least 6 characters.</div>
+                                                                </div>
+
+                                <div class="row g-3 mb-3">
+                                    <div class="col-12 col-md-6">
+                                        <label for="dob" class="form-label">Date of birth</label>
+                                        <input type="date" class="form-control" id="dob" name="dob" required>
+                                        <div class="invalid-feedback">Please select your date of birth.</div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <label for="age" class="form-label">Age</label>
+                                        <input type="number" class="form-control" id="age" name="age" placeholder="Auto"
+                                            min="0" max="120" required>
+                                        <div class="form-text">Auto-calculated from DOB. You can edit if necessary.
+                                        </div>
+                                        <div class="invalid-feedback">Please provide a valid age.</div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-control" id="gender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a gender.</div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="city" name="city"
+                                        placeholder="City you live in" required>
+                                    <div class="invalid-feedback">Please enter your city.</div>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Create account</button>
+                                </div>
+                            </form>
+
+                            <div class="mt-3 text-center small text-muted">By signing up you agree to our <a
+                                    href="#">Terms</a> and <a href="#">Privacy Policy</a>.</div>
+                            <div> <a href="signin.html">signin</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS + small custom logic -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Age auto-calc from DOB
+        const dobInput = document.getElementById('dob');
+        const ageInput = document.getElementById('age');
+
+        function calculateAge(dobValue) {
+            if (!dobValue) return '';
+            const dob = new Date(dobValue);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            return age >= 0 ? age : '';
+        }
+
+        dobInput.addEventListener('change', () => {
+            const age = calculateAge(dobInput.value);
+            if (age !== '') ageInput.value = age;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+        .dashboard {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 60px;
+        }
+        .user-info {
+            border-right: 2px solid #eee;
+        }
+        .activity {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container dashboard">
+        <div class="row">
+            <div class="col-md-4 user-info">
+                <h3 class="text-primary mb-4">User Information</h3>
+                <p><strong>Name:</strong> {{ user.user_name }}</p>
+                <p><strong>Email:</strong> {{ user.user_mail }}</p>
+                <p><strong>Age:</strong> {{ user.user_age }}</p>
+                <p><strong>Gender:</strong> {{ user.user_gender }}</p>
+            </div>
+            <div class="col-md-8 activity">
+                <h3 class="text-success mb-4">Activity Overview</h3>
+                {% if activities %}
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Date</th>
+                                <th>Workout</th>
+                                <th>Duration (mins)</th>
+                                <th>Calories Burned</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in activities %}
+                            <tr>
+                                <td>{{ activity.date }}</td>
+                                <td>{{ activity.workout_type }}</td>
+                                <td>{{ activity.duration }}</td>
+                                <td>{{ activity.calories }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p class="text-muted">No activity data available yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
