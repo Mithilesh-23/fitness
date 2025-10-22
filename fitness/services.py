@@ -17,6 +17,20 @@ class FitnessServices:
             'database': os.getenv('DB_NAME')
         }
 
+
+
+    def admin_authentication(self, admin_mail, admin_pass):
+        flag = False
+        con = pymysql.connect(**self.db_config)
+        curs = con.cursor(pymysql.cursors.DictCursor)
+        qr = f"Select * from admin where user_mail='{admin_mail}' and user_pass='{admin_pass}'"
+        curs.execute(qr)
+        curs.close()
+        con.close()
+        data=curs.fetchone()
+        return data
+    
+
     def new_register(self, username, email, password, dob, age, gender,  city ):
         flag = False
         con = pymysql.connect(**self.db_config)
@@ -33,18 +47,24 @@ class FitnessServices:
     def authenticate(self, user_mail, user_pass):
         flag = False
         con = pymysql.connect(**self.db_config)
-        curs = con.cursor()
+        curs = con.cursor(pymysql.cursors.DictCursor)
         qr = f"Select * from users where user_mail='{user_mail}' and user_pass='{user_pass}'"
         curs.execute(qr)
-        data=curs.fetchone()
-        if data:
-            flag=True
-        else:
-            flag=False
         curs.close()
         con.close()
+        data=curs.fetchone()
+        return data
+    
 
-        return flag
+    def select_user(self, user_mail, user_pass):
+        flag=False
+        con=pymysql.connect(**self.db_config)
+        curs=con.cursor()
+        qr=f"Select user_name, user_mail, age, gender from users where user_mail='{user_mail}' and user_pass='{user_pass}'"
+        curs.execute(qr)
+        data = curs.fetchall()
+        con.close()
+        return data
 
     
   

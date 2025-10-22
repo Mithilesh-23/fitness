@@ -19,11 +19,14 @@ from django.urls import path
 from .import views
 
 urlpatterns = [
-    path("indexx/", views.index, name='index'),
+    path("indexx/", views.indexx, name='indexx'),
     path("login/", views.login, name="login"),
     path("register/", views.register, name="register"), 
     path("new_register/", views.new_register, name="new_register"),
     path("choose_user/", views.choose_user, name="choose_user"),
+    path("dashboard/", views.dashboard, name="dashboard"),
+    path("adminlogin/", views.adminlogin, name="adminlogin"), 
+    
 
 
 

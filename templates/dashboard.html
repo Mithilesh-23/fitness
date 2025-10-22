@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,11 +31,15 @@
     <div class="container dashboard">
         <div class="row">
             <div class="col-md-4 user-info">
-                <h3 class="text-primary mb-4">User Information</h3>
-                <p><strong>Name:</strong> {{ user.user_name }}</p>
-                <p><strong>Email:</strong> {{ user.user_mail }}</p>
-                <p><strong>Age:</strong> {{ user.user_age }}</p>
-                <p><strong>Gender:</strong> {{ user.user_gender }}</p>
+                <h3 class="text-primary mb-4">User <strong style="color: red;">( {{user_name}} )</strong> Information</h3>
+                <p><strong>Name:</strong> {{ user_name }}</p>
+                <p><strong>Email:</strong> {{ user_mail }}</p>
+                <p><strong>Age:</strong> {{ age }}</p>
+                <p><strong>Gender:</strong> {{ gender }}</p>
+                <p><Strong>Height(cm):</Strong> {{ height }} cm</p>
+                <p><strong>Weight(kg):</strong> {{ weight }} kg</p>
+                <p><strong>BMI:</strong> {{ bmi }} </p>
+                <p><strong>BMI Category:</strong> {{ bmi_category }} </p>
             </div>
             <div class="col-md-8 activity">
                 <h3 class="text-success mb-4">Activity Overview</h3>
