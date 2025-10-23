@@ -25,7 +25,22 @@ urlpatterns = [
     path("new_register/", views.new_register, name="new_register"),
     path("choose_user/", views.choose_user, name="choose_user"),
     path("dashboard/", views.dashboard, name="dashboard"),
-    path("adminlogin/", views.adminlogin, name="adminlogin"), 
+    path("adminlogin/", views.adminlogin, name="adminlogin"),
+    path("choose_admin/", views.choose_admin, name="choose_admin"),
+    path("admin_dashboard/", views.admin_dashboard, name="admin_dashboard"),
+    path("user_list/", views.user_list, name="user_list"),
+    path("user_delete", views.user_delete, name="user_delete"),
+    path("user_profile_delete", views.user_profile_delete, name="user_profile_delete"),
+    path("user_search", views.user_search, name="user_search"),
+    path("user_profile_search", views.user_profile_search, name="user_profile_search"),
+    path("user_modify", views.user_modify, name="user_modify"),
+    path("user_profile_modify", views.user_profile_modify, name="user_profile_modify"),
+
+
+    
+
+
+     
     
 
 

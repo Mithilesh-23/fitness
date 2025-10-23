@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Search Result</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-4">User Profile Search Result</h1>
+    {% if user_profile_search_found %}
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Mail</th>
+            <th>Password</th>
+            <th>DOB</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>City</th>
+<th>Updated On</th>
+            <th>Height (cm)</th>
+            <th>Weight (kg)</th>
+           
+            
+          </tr>
+        </thead>
+        <tbody>
+          {% for rec in user_profile_search_found %}
+            <tr>
+              {% for col in rec %}
+                <td>{{ col }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-warning text-center">
+        No user found with that name.
+      </div>
+    {% endif %}
+    <div class="text-center mt-3">
+      <a href="{% url 'user_search' %}" class="btn btn-secondary">Back to Search</a>
+    </div>
+  </div>
+</body>
+</html>

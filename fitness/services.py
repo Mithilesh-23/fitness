@@ -19,11 +19,11 @@ class FitnessServices:
 
 
 
-    def admin_authentication(self, admin_mail, admin_pass):
+    def admin_authentication(self, admin_name, admin_pass):
         flag = False
         con = pymysql.connect(**self.db_config)
         curs = con.cursor(pymysql.cursors.DictCursor)
-        qr = f"Select * from admin where user_mail='{admin_mail}' and user_pass='{admin_pass}'"
+        qr = f"Select * from admin_data where admin_name='{admin_name}' and admin_pass='{admin_pass}'"
         curs.execute(qr)
         curs.close()
         con.close()
@@ -65,6 +65,54 @@ class FitnessServices:
         data = curs.fetchall()
         con.close()
         return data
-
     
+    def user_list(self):
+        con=pymysql.connect(**self.db_config)
+        curs = con.cursor()
+        qr = f'select * from users'
+        curs.execute(qr)
+        data = curs.fetchall()
+        con.close()
+        return data
+    
+    def user_profile_search(self, user_name):
+        con=pymysql.connect(**self.db_config)
+        curs=con.cursor()
+        qr=f"select * from users where user_name='{user_name}'"
+        curs.execute(qr)
+        data=curs.fetchall()
+        print("Search Result:", data)
+
+        con.close()
+        curs.close()
+        return data
+    
+    def user_profile_delete(self, user_mail, user_pass):
+        con = pymysql.connect(**self.db_config)
+        try:
+            curs = con.cursor()
+            qr = f"DELETE FROM users WHERE user_mail='{user_mail}' and user_pass='{user_pass}'"
+            curs.execute(qr)
+            con.commit()
+            if curs.rowcount > 0:
+                return True
+            else:
+                return False
+        finally:
+            curs.close()
+            con.close()
+
+
+    def user_profile_modify(self, user_mail, user_pass, height, weight):
+        con=pymysql.connect(**self.db_config)
+        curs=con.cursor()
+        qr=f"update users set height={height}, weight={weight} where user_mail='{user_mail}' and user_pass='{user_pass}'"  
+        curs.execute(qr)
+        con.commit()
+        update_row_qr=f"select * from users where user_mail='{user_mail}' and user_pass='{user_pass}'"
+        curs.execute(update_row_qr)
+        data=curs.fetchall()
+        con.close()
+        curs.close()
+        return data
   

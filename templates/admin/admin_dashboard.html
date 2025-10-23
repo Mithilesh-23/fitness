@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 80px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 80%;
+            margin: 15px 0;
+            padding: 12px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .user-list { background-color: #0984e3; color: white; }
+        .modify-user { background-color: #00b894; color: white; }
+        .delete-user { background-color: #d63031; color: white; }
+        .search-user { background-color: #6c5ce7; color: white; }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #636e72;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">Admin Dashboard</div>
+
+    <div class="container">
+        <h2>Welcome, {{ admin_name }} 👋</h2>
+        <p>Manage users easily from here</p>
+
+        <a href="{% url 'user_list' %}"><button class="btn user-list" >👥 User List</button></a>
+        <a href="{% url 'user_modify' %}"><button class="btn modify-user" >✏️ Modify User Info</button></a>
+        <a href="{% url 'user_delete' %}"><button class="btn delete-user" >🗑️ Delete User</button></a>
+        <a href="{% url 'user_search' %}"><button class="btn search-user" >🔍 Search User</button></a>
+        
+
+        <!-- <button class="btn search-user" ">🔍 Search User</button> -->
+    </div>
+
+    <footer>© 2025 Fitness Admin Panel</footer>
+
+</body>
+</html>
